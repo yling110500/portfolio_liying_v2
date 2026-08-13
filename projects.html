@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>校园经历 · Li Ying</title>
+  <meta name="description" content="李迎 · 校园经历 · 学术科研 / 交流学习 / 创新实践" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <style>
+    /* ============ Campus page ============ */
+    .case-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 22px;
+      margin-top: 18px;
+    }
+    .case {
+      background: var(--card);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  box-shadow 0.35s, border-color 0.35s;
+    }
+    .case:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent);
+    }
+    .case-top {
+      padding: 22px 22px 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      border-bottom: 1px dashed var(--line);
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent-soft) 65%, #fff 35%) 0%, var(--card) 70%);
+    }
+    .case-title {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      line-height: 1.35;
+      color: var(--text);
+    }
+    .case-role {
+      margin-top: 6px;
+      color: var(--accent-deep);
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+    .case-meta {
+      text-align: right;
+      min-width: 160px;
+      color: var(--text-soft);
+      font-size: 0.82rem;
+      font-family: "SF Mono", Menlo, Consolas, monospace;
+      letter-spacing: 0.4px;
+    }
+    .case-body {
+      padding: 18px 22px 22px;
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .case-lede {
+      color: var(--text-mid);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+    .case-block {
+      background: var(--card-soft);
+      border: 1px solid var(--line-soft);
+      border-radius: 14px;
+      padding: 14px 14px 12px;
+    }
+    .case-block h3 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text);
+      letter-spacing: 0.4px;
+      margin-bottom: 8px;
+    }
+    .case-block ul { list-style: none; }
+    .case-block li {
+      position: relative;
+      padding-left: 16px;
+      margin: 10px 0;
+      color: var(--text);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .case-block li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 11px;
+      width: 8px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 1px;
+    }
+    .case-tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.65);
+      color: var(--text-mid);
+      font-size: 0.82rem;
+    }
+    .case-actions { margin-top: 14px; }
+    /* 演示说明：脚注式，弱化不抢正文 */
+    .demo-notice {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 0 0 0 11px;
+      border-left: 2px solid var(--line);
+      background: transparent;
+      color: var(--text-soft);
+      font-size: 0.76rem;
+      line-height: 1.65;
+      font-weight: 400;
+      font-style: italic;
+    }
+    .coze-actions { flex-wrap: wrap; }
+    .coze-actions .btn { min-width: 170px; justify-content: center; }
+
+    @media (max-width: 860px) {
+      .case-body { grid-template-columns: 1fr; }
+      .case-top { flex-direction: column; }
+      .case-meta { text-align: left; min-width: auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Li Ying</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="education.html">教育经历</a></li>
+        <li><a href="work.html">实习经历</a></li>
+        <li><a href="projects.html" class="active">校园经历</a></li>
+        <li><a href="photography.html">更多</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <div class="container page-hero-grid">
+      <div>
+        <div class="page-kicker">— Campus</div>
+        <h1 class="page-title">校园经历</h1>
+        <p class="page-lede">
+          学术科研、交流学习与创新实践：我把它们当作“训练场”，用来建立方法论，也用来练习把复杂问题讲清楚。
+        </p>
+      </div>
+      <div class="page-meta">
+        <span class="badge">科研</span>
+        <span class="badge">实践</span>
+        <span class="badge">交流学习</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="fade-in" style="padding-top: 28px;">
+    <div class="container">
+      <h2 class="section-divider">AI 实践与研究</h2>
+
+      <div class="case-grid">
+        <article class="case" id="campus-danxiaotu">
+          <div class="case-top">
+            <div>
+              <div class="case-title">复旦大学图书馆智能问答助手「旦小图」</div>
+              <div class="case-role">产品核心成员 · 多 Agent 协同设计</div>
+              <div class="case-tags">
+                <span class="chip">Coze</span>
+                <span class="chip">Workflow</span>
+                <span class="chip">Knowledge Base</span>
+                <span class="chip">Feishu API</span>
+              </div>
+            </div>
+            <div class="case-meta">2025.03 — 2025.05</div>
+          </div>
+          <div class="case-body">
+            <div>
+              <p class="case-lede">
+                目标是把“复杂咨询”变成可规模化的服务：对学位论文提交咨询场景做意图识别、知识检索、答案生成、未解决问题闭环，
+                用最少的人力让知识库自生长。
+              </p>
+              <p class="demo-notice" role="note">
+                说明：以下为 Coze 平台上的演示 / 测试版本，用于能力验证与展示，并非复旦图书馆正式对外服务；正式环境与权限策略可能与此不同。
+              </p>
+              <div class="case-actions btn-row coze-actions">
+                <a
+                  class="btn"
+                  href="https://www.coze.cn/store/agent/7571828735662407726?bot_id=true&amp;bid=6jvle9i3k401k"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >学生端 · 试用 Demo</a>
+                <a
+                  class="btn"
+                  href="https://www.coze.cn/store/agent/7497459777375944743?bot_id=true"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >教师端 · 试用 Demo</a>
+                <a class="btn" href="assets/agent/agent.pdf" target="_blank" rel="noopener">说明文档（PDF）</a>
+              </div>
+            </div>
+            <aside class="case-block">
+              <h3>亮点</h3>
+              <ul>
+                <li><strong>模块化工作流：</strong>意图识别→问题改写→检索→生成→质检→回流。</li>
+                <li><strong>双端闭环：</strong>学生端未知问题自动录入，教师端辅助提取与回复，答案同步回知识库。</li>
+                <li><strong>结果：</strong>复杂问题准确率 <span class="badge">96.8%</span>；知识同步耗时从 24h 降到 5min。</li>
+              </ul>
+            </aside>
+          </div>
+        </article>
+
+        <article class="case" id="campus-llm-graph">
+          <div class="case-top">
+            <div>
+              <div class="case-title">基于 LLM 的考古元数据自动化抽取与图谱建设</div>
+              <div class="case-role">课题核心成员 · 本体建模 / 抽取 Prompt 设计</div>
+              <div class="case-tags">
+                <span class="chip">CIDOC CRM</span>
+                <span class="chip">Protégé</span>
+                <span class="chip">DeepSeek</span>
+                <span class="chip">JSON Schema</span>
+              </div>
+            </div>
+            <div class="case-meta">2025.03 — 至今</div>
+          </div>
+          <div class="case-body">
+            <div>
+              <p class="case-lede">
+                将非结构化考古报告转为标准化元数据与图谱：先做本体与字段约束，再用 Few-shot 与格式约束提升抽取稳定性，
+                最后把抽取结果接入后续的图谱构建与检索。
+              </p>
+              <div class="case-actions btn-row coze-actions">
+                <a class="btn" href="assets/agent/PE.txt" target="_blank" rel="noopener">遗迹模块 · 抽取提示词模板（.txt）</a>
+              </div>
+            </div>
+            <aside class="case-block">
+              <h3>我负责的部分</h3>
+              <ul>
+                <li><strong>本体与标准：</strong>基于 CIDOC CRM 修订核心元数据，定义类与属性逻辑。</li>
+                <li><strong>抽取设计：</strong>字段约束 + Few-shot Prompt，输出标准 JSON，便于入库与质检。</li>
+                <li><strong>效率：</strong>将人工标注从“手工录入”推进为“AI 工作流 + 人工抽检”。</li>
+              </ul>
+            </aside>
+          </div>
+        </article>
+      </div>
+
+      <h2 class="section-divider">交流学习</h2>
+      <div class="card" id="campus-hku">
+        <div class="card-header">
+          <div>
+            <div class="card-title">香港大学</div>
+            <div class="card-subtitle">访问交换生</div>
+          </div>
+          <div class="card-meta">2024.07 — 2024.08</div>
+        </div>
+        <p class="card-summary">
+          以“AI 与社会”与“数据素养/表达能力”两条线并行：从生成式 AI 的伦理与应用，到系统思维与英文表达训练，再到图书馆参访与校园深度学习。
+        </p>
+        <ul>
+          <li><strong>课程主题：</strong>AI 的乌托邦/反乌托邦视角、生成式 AI 内容创作实践、大数据时代的可信与伦理、系统思维与管理干预、专业英文展示训练</li>
+          <li><strong>学习方式：</strong>研讨 + hands-on + 案例讨论（含 2D/3D 视频生成等 Demo）</li>
+          <li><strong>参访交流：</strong>HKU Library &amp; Campus Tour；参与学生大使分享与破冰活动，建立跨文化学习网络</li>
+          <li><strong>沉淀输出：</strong>将课程讨论框架沉淀为可复用的“观点-证据-反例-结论”表达模板，用于后续研究与汇报</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Li Ying · Crafted with care · Hosted on GitHub Pages
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add("visible");
+          observer.unobserve(e.target);
+        }
+      }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
+
