@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>更多 · Li Ying</title>
+  <meta name="description" content="李迎 · 摄影 · 照片走廊" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <style>
+    /* ============ Photo corridor ============ */
+    .corridor-wrap {
+      margin-top: 16px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent-soft) 58%, #fff 42%) 0%, var(--bg) 60%);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .corridor-head {
+      padding: 14px 16px 12px;
+      border-bottom: 1px solid var(--line-soft);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .corridor-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      color: var(--text-soft);
+      font-family: "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.82rem;
+      letter-spacing: 0.3px;
+    }
+
+    .corridor {
+      --gap: 14px;
+      padding: 16px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: clamp(260px, 38vw, 420px);
+      gap: var(--gap);
+      -webkit-overflow-scrolling: touch;
+      scrollbar-gutter: stable both-edges;
+      background: rgba(255,255,255,0.35);
+    }
+    .corridor::-webkit-scrollbar { height: 10px; }
+    .corridor::-webkit-scrollbar-thumb {
+      background: color-mix(in srgb, var(--accent) 35%, #0000);
+      border-radius: 999px;
+      border: 3px solid rgba(255,255,255,0.55);
+    }
+    .corridor::-webkit-scrollbar-track { background: rgba(255,255,255,0.35); }
+
+    .shot {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid color-mix(in srgb, var(--line-soft) 72%, transparent);
+      background: rgba(255,255,255,0.82);
+      box-shadow: 0 18px 48px rgba(60, 56, 42, 0.12);
+      scroll-snap-align: center;
+      isolation: isolate;
+      transform: translateZ(0);
+    }
+    .shot::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(520px 220px at 30% 12%, rgba(255,255,255,0.70), transparent 56%),
+        linear-gradient(135deg, rgba(0,0,0,0.04), transparent 55%);
+      pointer-events: none;
+      opacity: 0.45;
+      z-index: 1;
+    }
+    .shot-img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.02);
+      transition: transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .shot:hover .shot-img { transform: scale(1.06); }
+    .shot-cap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 12px 12px 12px;
+      z-index: 2;
+      background: linear-gradient(to top, rgba(44,44,40,0.62), rgba(44,44,40,0.10), transparent);
+      color: rgba(255,255,255,0.92);
+      display: grid;
+      gap: 3px;
+    }
+    .shot-place {
+      font-family: var(--serif);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      font-size: 1.02rem;
+      line-height: 1.15;
+      text-shadow: 0 8px 22px rgba(0,0,0,0.24);
+    }
+    .shot-note {
+      font-family: "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.25px;
+      color: rgba(255,255,255,0.80);
+    }
+
+    @media (max-width: 768px) {
+      .corridor { grid-auto-columns: min(86vw, 420px); }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Li Ying</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="education.html">教育经历</a></li>
+        <li><a href="work.html">实习经历</a></li>
+        <li><a href="projects.html">校园经历</a></li>
+        <li><a href="photography.html" class="active">更多</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <div class="container page-hero-grid">
+      <div>
+        <div class="page-kicker">— 沿途</div>
+        <h1 class="page-title">途中所见</h1>
+        <p class="page-lede">一些路过，也一些停留。</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="fade-in" style="padding-top: 28px;">
+    <div class="container">
+      <div class="corridor-wrap">
+        <div class="corridor-head">
+          <div class="corridor-actions">
+            <span>滑动浏览 →</span>
+          </div>
+        </div>
+
+        <div
+          class="corridor"
+          id="corridor"
+          tabindex="0"
+          aria-label="照片走廊，使用方向键或横向滑动浏览"
+        >
+          <figure class="shot">
+            <img class="shot-img" src="assets/images/picture/huzhou/da7fb5f0289d8d346158b7c0c0e4193e.jpg" alt="湖州 照片" loading="lazy" />
+            <figcaption class="shot-cap"><div class="shot-place">湖州</div><div class="shot-note">huzhou · 01</div></figcaption>
+          </figure>
+          <figure class="shot">
+            <img class="shot-img" src="assets/images/picture/huzhou/cfd94cc92f84e7040f7f1faf2c4088fe.jpg" alt="湖州 照片" loading="lazy" />
+            <figcaption class="shot-cap"><div class="shot-place">湖州</div><div class="shot-note">huzhou · 02</div></figcaption>
+          </figure>
+
+          <figure class="shot">
+            <img class="shot-img" src="assets/images/picture/jinshan/04c1779a6cd6d763a626040ecc676ad6.jpg" alt="金山 照片" loading="lazy" />
+            <figcaption class="shot-cap"><div class="shot-place">金山</div><div class="shot-note">jinshan · 01</div></figcaption>
+          </figure>
+          <figure class="shot">
+            <img class="shot-img" src="assets/images/picture/jinshan/b267d6e2f6d10f7e289a6efefe9c5fde.jpg" alt="金山 照片" loading="lazy" />
+            <figcaption class="shot-cap"><div class="shot-place">金山</div><div class="shot-note">jinshan · 02</div></figcaption>
+          </figure>
+          <figure class="shot">
+            <img class="shot-img" src="assets/images/picture/jinshan/e2009fb8a9cda83ec48ddb3cb3fd2bfa.jpg" alt="金山 照片" loading="lazy" />
+            <figcaption class="shot-cap"><div class="shot-place">金山</div><div class="shot-note">jinshan · 03</div></figcaption>
+          </figure>
+
+          <figure class="shot">
+            <img class="shot-img" src="assets/images/picture/qiandaohu/058aaea7291a5934eb65d637a95370b4.jpg" alt="千岛湖 照片" loading="lazy" />
+            <figcaption class="shot-cap"><div class="shot-place">千岛湖</div><div class="shot-note">qiandaohu · 01</div></figcaption>
+          </figure>
+
+          <figure class="shot">
+            <img class="shot-img" src="assets/images/picture/shangrao/31cef50720d5e6414d3c2b1cf3505bd1.jpg" alt="上饶 照片" loading="lazy" />
+            <figcaption class="shot-cap"><div class="shot-place">上饶</div><div class="shot-note">shangrao · 01</div></figcaption>
+          </figure>
+          <figure class="shot">
+            <img class="shot-img" src="assets/images/picture/shangrao/290479636022e46c1d451a6f22bee6a6.jpg" alt="上饶 照片" loading="lazy" />
+            <figcaption class="shot-cap"><div class="shot-place">上饶</div><div class="shot-note">shangrao · 02</div></figcaption>
+          </figure>
+          <figure class="shot">
+            <img class="shot-img" src="assets/images/picture/shangrao/e81179835d42c1c20bbd7a50dff85fc8.jpg" alt="上饶 照片" loading="lazy" />
+            <figcaption class="shot-cap"><div class="shot-place">上饶</div><div class="shot-note">shangrao · 03</div></figcaption>
+          </figure>
+
+          <figure class="shot">
+            <img class="shot-img" src="assets/images/picture/suzhou/bb1391ad073496faaf1eb656e3ee054f.jpg" alt="苏州 照片" loading="lazy" />
+            <figcaption class="shot-cap"><div class="shot-place">苏州</div><div class="shot-note">suzhou · 01</div></figcaption>
+          </figure>
+          <figure class="shot">
+            <img class="shot-img" src="assets/images/picture/suzhou/d3b89cc54af493eb891ad68a54498d09.jpg" alt="苏州 照片" loading="lazy" />
+            <figcaption class="shot-cap"><div class="shot-place">苏州</div><div class="shot-note">suzhou · 02</div></figcaption>
+          </figure>
+          <figure class="shot">
+            <img class="shot-img" src="assets/images/picture/suzhou/b5754c107653ca36e7978a2272e598df.jpg" alt="苏州 照片" loading="lazy" />
+            <figcaption class="shot-cap"><div class="shot-place">苏州</div><div class="shot-note">suzhou · 03</div></figcaption>
+          </figure>
+
+          <figure class="shot">
+            <img class="shot-img" src="assets/images/picture/xianggang/238265cbf2021ac7e9125587d68486eb.jpg" alt="香港 照片" loading="lazy" />
+            <figcaption class="shot-cap"><div class="shot-place">香港</div><div class="shot-note">xianggang · 01</div></figcaption>
+          </figure>
+          <figure class="shot">
+            <img class="shot-img" src="assets/images/picture/xianggang/7e111ee5e195e3e6050212749e10b488.jpg" alt="香港 照片" loading="lazy" />
+            <figcaption class="shot-cap"><div class="shot-place">香港</div><div class="shot-note">xianggang · 02</div></figcaption>
+          </figure>
+          <figure class="shot">
+            <img class="shot-img" src="assets/images/picture/xianggang/3f9bca148295323c37ff2b71b92712f4.jpg" alt="香港 照片" loading="lazy" />
+            <figcaption class="shot-cap"><div class="shot-place">香港</div><div class="shot-note">xianggang · 03</div></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Li Ying · Crafted with care · Hosted on GitHub Pages
+  </footer>
+
+  <script>
+    // scroll-in animation (consistent with other pages)
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add("visible");
+          observer.unobserve(e.target);
+        }
+      }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+
+    // wheel -> horizontal (desktop)
+    const corridor = document.getElementById("corridor");
+    corridor?.addEventListener("wheel", (e) => {
+      // allow trackpads to behave naturally; only translate classic mouse wheel
+      const isTouchLike = Math.abs(e.deltaX) > Math.abs(e.deltaY);
+      if (isTouchLike) return;
+      e.preventDefault();
+      corridor.scrollLeft += e.deltaY * 1.1;
+    }, { passive: false });
+  </script>
+</body>
+</html>
