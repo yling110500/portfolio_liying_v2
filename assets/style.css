@@ -1,0 +1,478 @@
+/* ============================================================
+   Li Ying · Portfolio · Shared Styles
+   配色:橄榄烟绿莫兰迪
+   字体:思源宋体 + Playfair Display 混排
+   适用所有子页面
+   ============================================================ */
+
+/* ---------- 重置 ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ---------- 设计 token ---------- */
+:root {
+  /* 莫兰迪橄榄烟绿色卡 */
+  --bg:           #f0ede5;   /* 燕麦白主背景 */
+  --bg-soft:      #e8e4d9;   /* 米灰浅背景 */
+  --card:         #ffffff;   /* 卡片白 */
+  --card-soft:    #f6f3ec;   /* 卡片米白 */
+  --line:         #d8d4c8;   /* 米灰描边 */
+  --line-soft:    #e6e2d6;   /* 浅描边 */
+
+  --accent:       #7d8b6f;   /* 橄榄烟绿(强调色) */
+  --accent-deep:  #5e6b54;   /* 深橄榄(hover) */
+  --accent-soft:  #d8ddcf;   /* 淡橄榄(背景标签) */
+
+  --text:         #2c2c28;   /* 正文深灰 */
+  --text-mid:     #595852;   /* 次级文字 */
+  --text-soft:    #8a8980;   /* 弱化文字 */
+
+  --shadow:       0 2px 16px rgba(60, 56, 42, 0.06);
+  --shadow-hover: 0 8px 32px rgba(60, 56, 42, 0.10);
+
+  --radius:       10px;
+  --radius-lg:    18px;
+  --max:          1100px;
+
+  --serif:        "Playfair Display", "Source Han Serif SC",
+                  "Noto Serif SC", "Songti SC", "STSong", serif;
+  --sans:         "Inter", -apple-system, BlinkMacSystemFont,
+                  "PingFang SC", "Hiragino Sans GB",
+                  "Microsoft YaHei", sans-serif;
+}
+
+/* ---------- 基础排版 ---------- */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  /* 锚点跳转时预留 sticky 导航高度，避免标题被挡住 */
+  scroll-padding-top: 88px;
+}
+
+body {
+  font-family: var(--sans);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--accent-deep);
+  text-decoration: none;
+  transition: opacity 0.2s, color 0.2s;
+}
+a:hover { opacity: 0.7; }
+
+img { max-width: 100%; display: block; }
+
+/* ---------- 可访问性 & 动效偏好 ---------- */
+:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 65%, transparent);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------- 顶部导航(全站共享,每个 HTML 复制一份) ---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(240, 237, 229, 0.85);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--line-soft);
+}
+.nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 18px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--text);
+  letter-spacing: 1.5px;
+}
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--text-mid);
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  position: relative;
+  padding-bottom: 4px;
+  text-transform: none;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 1.5px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover { color: var(--text); opacity: 1; }
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.active { color: var(--accent-deep); }
+.nav-links a.active::after { width: 100%; }
+
+/* ---------- 容器 & 章节 ---------- */
+.container {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+section { padding: 80px 0; }
+
+/* ---------- 通用标题 ---------- */
+.section-num {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--accent);
+  letter-spacing: 3px;
+  margin-bottom: 6px;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.section-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  margin-bottom: 48px;
+  letter-spacing: 0.3px;
+}
+
+/* ---------- 页面头部（子页） ---------- */
+.page-hero {
+  padding: 56px 0 14px;
+}
+.page-hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 32px;
+  align-items: end;
+}
+.page-kicker {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--accent);
+  font-size: 0.95rem;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+.page-title {
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+}
+.page-lede {
+  color: var(--text-mid);
+  font-size: 0.98rem;
+  line-height: 1.8;
+  max-width: 62ch;
+  margin-top: 10px;
+}
+.page-meta {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+}
+
+/* ---------- 通用卡片 ---------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  padding: 30px 34px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.35s, border-color 0.35s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--accent);
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.3px;
+}
+.card-subtitle {
+  font-size: 0.95rem;
+  color: var(--accent-deep);
+  font-weight: 500;
+  margin-top: 2px;
+}
+.card-meta {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  letter-spacing: 0.5px;
+}
+.card-summary {
+  color: var(--text-mid);
+  font-size: 0.95rem;
+  margin: 14px 0 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--line);
+}
+.card ul { list-style: none; }
+.card ul li {
+  position: relative;
+  padding-left: 18px;
+  margin: 12px 0;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+.card ul li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 12px;
+  width: 8px; height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+.card ul li strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ---------- 数据徽章 ---------- */
+.badge {
+  display: inline-block;
+  padding: 1px 8px;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  margin: 0 2px;
+}
+
+/* ---------- 标签 ---------- */
+.tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--bg-soft);
+  color: var(--text-mid);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.tag:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* ---------- 按钮 ---------- */
+.btn {
+  display: inline-block;
+  padding: 10px 22px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn:hover {
+  background: var(--accent-deep);
+  transform: translateY(-1px);
+  opacity: 1;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--accent-deep);
+  border: 1.5px solid var(--accent);
+}
+.btn-ghost:hover { background: var(--accent); color: #fff; }
+
+.btn-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ---------- 分段分隔标题（子页二级） ---------- */
+.section-divider {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  letter-spacing: 2.5px;
+  color: var(--accent);
+  margin: 48px 0 24px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+/* ---------- 页脚 ---------- */
+footer {
+  max-width: var(--max);
+  margin: 48px auto 0;
+  padding: 32px;
+  border-top: 1px solid var(--line-soft);
+  text-align: center;
+  color: var(--text-soft);
+  font-size: 0.85rem;
+  font-family: var(--serif);
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+/* ---------- 滚动淡入动画 ---------- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- 轻量模态层（用于“翻页详情”） ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(44, 44, 40, 0.38);
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 999;
+}
+.modal.open { display: flex; }
+.modal-card {
+  width: min(920px, 96vw);
+  max-height: min(86vh, 900px);
+  overflow: auto;
+  background: var(--card);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 18px 60px rgba(60, 56, 42, 0.22);
+}
+.modal-head {
+  position: sticky;
+  top: 0;
+  background: color-mix(in srgb, var(--card) 88%, var(--bg) 12%);
+  border-bottom: 1px solid var(--line-soft);
+  padding: 18px 22px;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: start;
+}
+.modal-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+}
+.modal-subtitle {
+  color: var(--text-soft);
+  font-size: 0.88rem;
+  margin-top: 4px;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+}
+.modal-close {
+  border: 1px solid var(--line-soft);
+  background: transparent;
+  border-radius: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+  color: var(--text-mid);
+}
+.modal-close:hover { border-color: var(--accent); color: var(--text); opacity: 1; }
+.modal-body { padding: 18px 22px 22px; }
+.pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+}
+.pager-center {
+  color: var(--text-soft);
+  font-size: 0.86rem;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 768px) {
+  .nav-inner { padding: 14px 20px; }
+  .nav-links { gap: 18px; }
+  .nav-links a { font-size: 0.82rem; }
+
+  .container { padding: 0 20px; }
+  section { padding: 56px 0; }
+
+  .section-title { font-size: 1.8rem; }
+  .page-hero { padding: 38px 0 10px; }
+  .page-hero-grid { grid-template-columns: 1fr; }
+  .page-meta { justify-content: flex-start; }
+  .page-title { font-size: 2.05rem; }
+
+  .card { padding: 24px 22px; }
+  .card-header { flex-direction: column; }
+  .modal-card { width: min(920px, 98vw); }
+}
+
+@media print {
+  .nav, footer { display: none; }
+  .card { break-inside: avoid; box-shadow: none; }
+}
