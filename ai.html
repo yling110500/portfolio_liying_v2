@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>已迁移 · Li Ying</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <meta http-equiv="refresh" content="0; url=projects.html" />
+
+  <style>
+    .redirect {
+      min-height: 60vh;
+      display: grid;
+      place-items: center;
+      padding: 72px 0;
+    }
+    .redirect-card {
+      background: var(--card);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 26px 26px;
+      width: min(760px, 94vw);
+    }
+    .redirect-title {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.6rem;
+      letter-spacing: 0.4px;
+      margin-bottom: 8px;
+    }
+    .redirect-desc {
+      color: var(--text-mid);
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============ 顶部导航 ============ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Li Ying</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="education.html">教育经历</a></li>
+        <li><a href="work.html">实习经历</a></li>
+        <li><a href="projects.html">校园经历</a></li>
+        <li><a href="photography.html">更多</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="redirect">
+    <div class="redirect-card">
+      <div class="redirect-title">页面已迁移</div>
+      <div class="redirect-desc">
+        为了把“校园经历/AI 实践”升级成更像作品集的呈现，我把内容合并到了新的 <strong>校园经历</strong> 页面。
+        如果没有自动跳转，请点击下面按钮进入。
+      </div>
+      <div class="btn-row">
+        <a class="btn" href="projects.html">前往校园经历 →</a>
+        <a class="btn btn-ghost" href="index.html">返回首页</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Li Ying · Crafted with care · Hosted on GitHub Pages
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add("visible");
+          observer.unobserve(e.target);
+        }
+      }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
