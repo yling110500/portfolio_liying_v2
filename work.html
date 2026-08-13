@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Internship · Li Ying</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <style>
+    /* ============ 实习页专属样式 ============ */
+
+    /* ---------- 板块分隔标题 ---------- */
+    .section-divider {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      letter-spacing: 2.5px;
+      color: var(--accent);
+      margin: 48px 0 24px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    /* ---------- 时间轴核心样式 ---------- */
+    .timeline {
+      position: relative;
+      padding-left: 48px;
+    }
+    /* 贯穿的竖线 */
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--line);
+    }
+    /* 时间轴单条目 */
+    .timeline-item {
+      position: relative;
+      margin-bottom: 48px;
+    }
+    /* 圆点 */
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -48px;
+      top: 4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 3px solid var(--accent);
+      z-index: 2;
+    }
+    /* 时间标签 */
+    .timeline-date {
+      font-family: "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      letter-spacing: 0.5px;
+      position: absolute;
+      left: -144px;
+      top: 4px;
+      text-align: right;
+      width: 80px;
+    }
+
+    /* 实习卡片 */
+    .timeline-card {
+      background: var(--card);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-lg);
+      padding: 32px 36px;
+      box-shadow: var(--shadow);
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  box-shadow 0.4s, border-color 0.4s;
+    }
+    .timeline-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent);
+    }
+
+    /* 卡片头部 */
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed var(--line);
+    }
+    .timeline-company {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0.5px;
+    }
+    .timeline-role {
+      font-size: 0.95rem;
+      color: var(--accent-deep);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .timeline-department {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-top: 4px;
+    }
+
+    /* 内容列表 */
+    .timeline-list { list-style: none; }
+    .timeline-list li {
+      position: relative;
+      padding-left: 18px;
+      margin: 12px 0;
+      color: var(--text);
+      font-size: 0.93rem;
+      line-height: 1.7;
+    }
+    .timeline-list li::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 11px;
+      width: 8px; height: 2px;
+      background: var(--accent);
+      border-radius: 1px;
+    }
+    .timeline-list li strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ---------- 响应式 ---------- */
+    @media (max-width: 820px) {
+      .timeline { padding-left: 0; }
+      .timeline::before { left: 12px; }
+      .timeline-item::before { left: 4px; top: 12px; }
+      .timeline-date {
+        position: static;
+        display: inline-block;
+        background: var(--accent-soft);
+        color: var(--accent-deep);
+        padding: 2px 8px;
+        border-radius: 4px;
+        margin-bottom: 12px;
+        text-align: left;
+        width: auto;
+      }
+      .timeline-card { padding: 24px 22px; }
+      .timeline-header { flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============ 顶部导航 ============ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Li Ying</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="education.html">教育经历</a></li>
+        <li><a href="work.html" class="active">实习经历</a></li>
+        <li><a href="projects.html">校园经历</a></li>
+        <li><a href="photography.html">更多</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============ 内容主体 ============ -->
+  <section class="fade-in">
+    <div class="container">
+      <span class="section-num">— 02</span>
+      <h1 class="section-title">实习经历</h1>
+      <p class="section-subtitle">按时间顺序呈现，正文即完整经历说明</p>
+
+      <!-- 实习经历板块 -->
+      <h2 class="section-divider">Internships</h2>
+      <div class="timeline">
+        <!-- ========== 1. 字节跳动（策略产品） ========== -->
+        <div class="timeline-item" id="intern-bytedance-product">
+          <div class="timeline-date">2026.06 — 至今</div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-company">字节跳动 · TikTok Shop</div>
+                <div class="timeline-role">策略产品实习生</div>
+              </div>
+            </div>
+            <ul class="timeline-list">
+              <li><strong>产品背景：</strong>Sales Accelerator（SA）面向 TikTok Shop 商家的 B 端商品成长产品，通过商品力评分、经营任务与资源激励，推动高潜商品成长为战略重点商品 (SKPP)，并进一步冷启成功和孵化为爆品。</li>
+              <li><strong>任务规则升级：</strong>针对原任务与商品实际经营能力关联不足的问题，修改价格、履约规则并提升规则透明度；增加信息质量、CRM 托管任务，引导商家提升货架场经营能力。上线后，信息质量和 CRM 任务覆盖商品数分别增长 6.7% / 4.7%，SKPP 商品池日均规模增长 3.1%。</li>
+              <li><strong>激励规则迭代：</strong>广告金补贴从“全量 SKPP 普遍补贴”收敛至“靶向货盘的站内同款新品”；把固定广告金改为按商品上架后 L30 净 GMV 动态核算；建立靶向爆品引入率—L30 SKPP 转化率—站内出爆率—补贴 ROI 指标链路，提高资源对高价值供给的匹配效率。上线两周，商机导流点击 +5pp，靶向货盘标签点击率 8.2%，共引入 2000+ 靶向货盘新品。</li>
+              <li><strong>爆品页面整合：</strong>基于页面曝光—任务点击—广告创建转化率仅 39.3% / 23.2% / 15.4% 的漏斗分析，定位任务入口分散、链路较深及广告挑战需手动报名等问题；整合短视频与广告两类任务为商品生命周期任务台，统一成长阶段、达标门槛、任务进度与奖励展示；以广告创建率、短视频挂品率为过程指标，指向最终出爆率。上线一周，爆品孵化任务总体参与率 +4.32%，其中广告任务参与率较改版前 +10.1%。</li>
+              <li><strong>AI经营助手与任务提效：</strong>基于商品分层发现，11–13 分高竞争力商品贡献 51.76% 的 SKPP GMV，但 SA 访问至单任务点击转化率仅 28.2%；据此设计基于 MCP/API 编排的商家经营助手，将商品力诊断、任务规划与推荐参数整合为单品多任务方案，支持自然语言调整、参数预填及多任务一键提交，降低商家操作成本，目标提升任务完成率和 SKPP 商品整体表现。</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ========== 2. SHEIN（产品） ========== -->
+        <div class="timeline-item" id="intern-shein">
+          <div class="timeline-date">2026.02 — 2026.06</div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-company">SHEIN</div>
+                <div class="timeline-role">产品实习生</div>
+              </div>
+            </div>
+            <ul class="timeline-list">
+              <li><strong>AIGC 智能推图:</strong> 针对商卡固定主图、优质副图缺乏曝光机会等问题，参与设计存量图片优选，调用 Qwen 模型完成白底/模特图分类与不合格图片过滤，并结合点击率、加车率进行图片赛马，CTR +0.44%；基于 AIGC 生成高质量模特图/场景图，在珠宝品类实验中实现 CTR +0.57%。</li>
+              <li><strong>智能动态标签升级:</strong> 设计商品低库存、近期热销标签；低库存标签引入相对动销机制，通过可售天数展现库存消耗速度，支付转化率提升 +1.85%；定义同末级品类近 14 天销量 Top 10% 为近期热销阈值，推广至非 US 区域，US 站支付转化率提升 +0.32%。</li>
+              <li><strong>用户评论展示:</strong> 通过品类梳理评论关键词、算法清洗优质评论，并基于 LLM 进行评论归一化，按品类优先级与出现频次排序，优先透出高价值评论短语标签，实现 CTR +0.31%。</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ========== 3. 字节跳动（策略运营） ========== -->
+        <div class="timeline-item" id="intern-bytedance-ops">
+          <div class="timeline-date">2025.11 — 2026.02</div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-company">字节跳动</div>
+                <div class="timeline-role">策略运营实习生</div>
+              </div>
+            </div>
+            <ul class="timeline-list">
+              <li><strong>商家分层建设:</strong> 为了让头部影响力品牌 GMV 增长领跑 TTS Mall 频道 GMV，提升 TTS 平台影响力，协助推动「头部品牌增长」项目。建立基于竞对头商、GRKA 的 Top Brand 商家体系。落地以「TTS 控制率」为核心的评估体系，将头部品牌分为高优、低优，为精细化运营、资源差异化配置提供支持；项目至今 Top brand 整体控比从 0.71 提升到 0.82。</li>
+              <li><strong>商家成长策略:</strong> 落地 JBP 头部商家增长计划，按商家 GMV 与广告投入，匹配佣金减免、成本保护、先买后付等资源包；并通过搭建提效 Agent，对不同分级的商家发送定制化确认邮件，流程提速至小时级；针对未参加 JBP 的高潜商家，建立基于 GMV、广告投流、补贴率等指标为核心的监控看板，数据验证 JBP 商家相较于非 JBP 商家 DAGMV +230%，平台补贴+45%，JBP 商家参与增长计划前后 DAGMV+37%，平台补贴+4pp。</li>
+              <li><strong>商家治理看板搭建与应用:</strong> 搭建并落地 AM 侧商家治理看板，整合商家健康度与核心风险指标，实现对商家经营风险的监控与预警。项目上线后，有效支撑了商家问题的快速定位与治理，如通过延迟履约率、商责取消率、次日达等关键履约指标，定位出高延迟、高频取消订单的问题商家。显著提升了团队的精细化运营效率与风险管控能力。</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ========== 4. 字节跳动（商业分析） ========== -->
+        <div class="timeline-item" id="intern-bytedance-ba">
+          <div class="timeline-date">2025.07 — 2025.11</div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-company">字节跳动</div>
+                <div class="timeline-role">商业分析实习生</div>
+              </div>
+            </div>
+            <ul class="timeline-list">
+              <li><strong>经营监控与异动分析:</strong> 负责出海游戏广告业务经营分析，建立涵盖团队、客户、版位、游戏类型等多维度的业绩追踪体系。通过监测关键指标如消耗、活客数、ARPA、YoY，快速定位数据异动原因，为业务决策提供数据支持。如针对营销波动进行归因分析，通过对新开/存量投广进行分层与多维度下钻，量化各因素对整体收入的贡献度，如精准定位 CNOB-存量每月投广-头客-APRA 下降是存量营收下跌的主要原因，并提出相应策略。</li>
+              <li><strong>营销预测建模:</strong> 负责构建游戏广告营收预测模型。通过对客户结构、游戏类型及投放阶段进行多层级拆解，结合行业趋势与历史数据，预估关键增长率与渗透率。经过三次快速迭代，预测误差控制在 5%以内，为目标拆解、资源分配提供了核心数据依据。</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ========== 5. Shopee ========== -->
+        <div class="timeline-item" id="intern-shopee">
+          <div class="timeline-date">2025.05 — 2025.07</div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-company">Shopee</div>
+                <div class="timeline-role">策略实习生</div>
+              </div>
+            </div>
+            <ul class="timeline-list">
+              <li><strong>新品策略:</strong> 负责虾皮平台新品策略分析，基于对过往新品销售数据及品类 top 情况，发现服装品类新品 ADO 达峰时间滞后现象。定位出「流量策略匹配不精准」的问题，提出将线下橱窗展示的陈列逻辑迁移至线上，搭建基于流行趋势的新品聚合场景，提升用户的点击率和转化率。经测试验证，实验组新品 ADO 达峰时间提前至 M+2，且峰值 ADO 较优化前提升 15%。</li>
+              <li><strong>动态追踪:</strong> 运用高级函数整合多国源数据，实现 KPI 自动化追踪，通过与客户经理密切合作，准确归因卖家业绩波动，发现平台政策调整、季节性需求变化等四大因素，为精细化运营提供有力支持。</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ========== 6. 汇知意德咨询 ========== -->
+        <div class="timeline-item" id="intern-consulting">
+          <div class="timeline-date">2024.10 — 2025.03</div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-company">上海汇知意德企业管理咨询有限公司</div>
+                <div class="timeline-role">战略咨询实习生</div>
+              </div>
+            </div>
+            <ul class="timeline-list">
+              <li>深度参与头部车企新能源汽车（NEV）上市前战略项目，支持其核心定价与市场进入策略。完整覆盖从项目启动、研究设计、数据分析到报告撰写的全流程，为客户提供了关键的商业决策依据。</li>
+              <li>设计并执行了定性研究（焦点小组、一对一深访）与定量研究（回收 500+ 问卷）。运用 SPSS 进行数据清洗、交叉分析，并结合访谈文本的归纳提炼，成功识别出核心目标用户画像及其未被满足的需求痛点。应用 PSM（价格敏感度测试）模型对用户支付意愿数据进行分析，测算出新车型的最优定价区间。直接为最终的上市定价策略提供了数据支撑。</li>
+              <li>系统性分析了沙特市场的主流车型销量、定价及消费者偏好，并对比了中国 NEV 品牌的出海表现。协助撰写并交付了沙特市场专项研究报告，为客户的全球化拓展战略提供了初步的可行性评估与市场进入建议。</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ========== 7. 国金 ========== -->
+        <div class="timeline-item" id="intern-ipo">
+          <div class="timeline-date">2024.01 — 2025.05</div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-company">国金证券</div>
+                <div class="timeline-role">IPO 项目实习生</div>
+                <div class="timeline-department">投资银行部</div>
+              </div>
+            </div>
+            <ul class="timeline-list">
+              <li><strong>IPO 申报支持:</strong> 深度参与北交所 IPO 项目，协助整理、核验 3 年财务数据，完成收入、成本、费用科目穿行测试，为财报披露提供数据支撑</li>
+              <li><strong>审计程序执行:</strong> 负责银行函证的制作、发出与回收全流程，完成 100+ 份函证核对，覆盖率 100%，零差错</li>
+              <li><strong>行业研究:</strong> 收集整理细分行业政策、竞品财务与业务数据，输出《行业竞争格局分析报告》，作为招股书行业章节核心素材</li>
+              <li><strong>财务分析:</strong> 运用 Excel 数据透视表、VLOOKUP 等工具处理海量财务数据，计算核心财务指标，完成多维度交叉分析</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ========== 8. 普华永道 ========== -->
+        <div class="timeline-item" id="intern-audit">
+          <div class="timeline-date">2021.12 — 2022.03</div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <div class="timeline-company">普华永道中天会计师事务所</div>
+                <div class="timeline-role">审计实习生</div>
+                <div class="timeline-department">科技行业审计组</div>
+              </div>
+            </div>
+            <ul class="timeline-list">
+              <li><strong>项目参与:</strong> 协助完成美团审计项目，负责银行账户、固定资产、供应商清单等科目准确性核验，完成 50+ 科目抽样测试</li>
+              <li><strong>审计程序执行:</strong> 应用银行询证、穿行测试等标准审计程序，完成银行存款与金融资产科目审计，识别 2 个潜在风险点并跟进整改</li>
+              <li><strong>报告支持:</strong> 协助编制财务报表附注与审计报告，完成理财产品收益率测算等专项工作</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Li Ying · Crafted with care · Hosted on GitHub Pages
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add("visible");
+          observer.unobserve(e.target);
+        }
+      }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
