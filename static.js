@@ -1,0 +1,2 @@
+const rail=document.querySelector('.photo-rail');
+if(rail){rail.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){e.preventDefault();rail.scrollLeft+=e.deltaY}},{passive:false});rail.addEventListener('keydown',e=>{if(e.key==='ArrowRight')rail.scrollBy({left:360,behavior:'smooth'});if(e.key==='ArrowLeft')rail.scrollBy({left:-360,behavior:'smooth'})})}
