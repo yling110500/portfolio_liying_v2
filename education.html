@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>教育 · Li Ying</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <style>
+    /* ============ 教育页专属样式 ============ */
+
+    /* 学校卡片:左封面 + 右内容 */
+    .edu-card {
+      background: var(--card);
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  box-shadow 0.4s, border-color 0.4s;
+      display: grid;
+      grid-template-columns: 38% 1fr;
+    }
+    .edu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent);
+    }
+
+    /* ===== 学校封面区:校徽 + 学位标签 + 校名 ===== */
+    .edu-cover {
+      position: relative;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 36px 28px;
+      background: #faf7ee;
+      border-right: 1px solid var(--line-soft);
+      overflow: hidden;
+    }
+    /* 四个角装饰小细线 */
+    .edu-cover::before,
+    .edu-cover::after {
+      content: "";
+      position: absolute;
+      width: 24px; height: 1px;
+      background: var(--accent);
+      opacity: 0.4;
+    }
+    .edu-cover::before { top: 20px; left: 20px; }
+    .edu-cover::after  { bottom: 20px; right: 20px; }
+
+    /* 学位标签(顶部小字) */
+    .edu-degree-label {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 0.72rem;
+      letter-spacing: 3px;
+      color: var(--accent-deep);
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    /* 校徽 */
+    .edu-logo {
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      margin-bottom: 22px;
+    }
+
+    /* 校名分隔细线 */
+    .edu-cover .divider {
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.5;
+      margin-bottom: 12px;
+    }
+
+    /* 校名英文 */
+    .edu-cover-name-en {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      color: var(--text);
+      text-align: center;
+      line-height: 1.4;
+      max-width: 95%;
+      text-transform: uppercase;
+    }
+    /* 校名中文小字(选用) */
+    .edu-cover-name-cn {
+      font-size: 0.72rem;
+      letter-spacing: 4px;
+      color: var(--text-soft);
+      margin-top: 8px;
+    }
+
+    /* ===== 学校内容区 ===== */
+    .edu-body {
+      padding: 32px 36px;
+    }
+    .edu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .edu-school {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0.5px;
+    }
+    .edu-degree {
+      font-size: 0.95rem;
+      color: var(--accent-deep);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .edu-date {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      font-family: "SF Mono", Menlo, Consolas, monospace;
+      letter-spacing: 0.5px;
+    }
+
+    /* 教育要点列表 */
+    .edu-list { list-style: none; margin-top: 14px; }
+    .edu-list li {
+      position: relative;
+      padding-left: 18px;
+      margin: 11px 0;
+      color: var(--text);
+      font-size: 0.93rem;
+      line-height: 1.7;
+    }
+    .edu-list li::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 11px;
+      width: 8px; height: 2px;
+      background: var(--accent);
+      border-radius: 1px;
+    }
+    .edu-list li strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ===== 港大交换"嵌套子卡片" ===== */
+    .exchange {
+      margin-top: 18px;
+      padding: 18px 20px;
+      background: var(--card-soft);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+    .exchange-logo {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+    }
+    .exchange-title {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .exchange-title .pill {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-style: normal;
+      letter-spacing: 1.5px;
+      color: var(--accent-deep);
+      background: var(--accent-soft);
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    .exchange-meta {
+      font-size: 0.82rem;
+      color: var(--text-soft);
+      font-family: "SF Mono", Menlo, Consolas, monospace;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .exchange-desc {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      margin-bottom: 10px;
+      line-height: 1.65;
+    }
+    .course-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .course {
+      padding: 5px 11px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      font-size: 0.78rem;
+      color: var(--text-mid);
+      transition: all 0.2s;
+    }
+    .course:hover {
+      border-color: var(--accent);
+      color: var(--accent-deep);
+    }
+
+    /* ===== 响应式 ===== */
+    @media (max-width: 820px) {
+      .edu-card { grid-template-columns: 1fr; }
+      .edu-cover {
+        min-height: 240px;
+        border-right: none;
+        border-bottom: 1px solid var(--line-soft);
+        padding: 28px 24px;
+      }
+      .edu-logo { width: 88px; height: 88px; margin-bottom: 16px; }
+      .edu-degree-label { margin-bottom: 16px; }
+      .edu-body { padding: 26px 24px; }
+      .edu-header { flex-direction: column; }
+      .exchange { grid-template-columns: 1fr; }
+      .exchange-logo { width: 48px; height: 48px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============ 顶部导航 ============ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Li Ying</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="education.html" class="active">教育经历</a></li>
+        <li><a href="work.html">实习经历</a></li>
+        <li><a href="projects.html">校园经历</a></li>
+        <li><a href="photography.html">更多</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============ 内容主体 ============ -->
+  <section class="fade-in">
+    <div class="container">
+      <span class="section-num">— 01</span>
+      <h1 class="section-title">Education</h1>
+      <p class="section-subtitle">教育背景</p>
+
+      <!-- ===================== 复旦大学 ===================== -->
+      <article class="edu-card" id="edu-fudan">
+        <div class="edu-cover">
+          <div class="edu-degree-label">— Master's Degree</div>
+          <img
+            class="edu-logo"
+            src="assets/images/logo-fudan.png"
+            alt="Fudan University Logo"
+          />
+          <div class="divider"></div>
+          <div class="edu-cover-name-en">Fudan University</div>
+          <div class="edu-cover-name-cn">复 旦 大 学</div>
+        </div>
+
+        <div class="edu-body">
+          <div class="edu-header">
+            <div>
+              <div class="edu-school">复旦大学</div>
+              <div class="edu-degree">硕士 · 图书情报</div>
+            </div>
+            <div class="edu-date">2024.09 — 2027.06</div>
+          </div>
+
+          <ul class="edu-list">
+            <li><strong>研究方向:</strong>数据管理与应用 Data Management &amp; Application</li>
+            <li><strong>绩点:</strong>3.61 / 4.0(前 30%)</li>
+            <li><strong>荣誉奖项:</strong>优秀党员 · 优秀学业奖学金 · AI+ 信息素养大赛省级三等奖 · AI 开发大赛三等奖</li>
+            <li><strong>商赛经历:</strong>卓越杯 · 贝恩杯 · 等校园商业案例分析比赛</li>
+            <li><strong>参与课题:</strong>《基于云服务的多智能体协同在图书馆智能问答服务中的应用研究》</li>
+            <li><strong>核心课程:</strong>信息组织 · 数据挖掘 · 知识图谱 · 机器学习 · 用户研究方法</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- ===================== 中南财经政法大学 ===================== -->
+      <article class="edu-card" id="edu-zuel">
+        <div class="edu-cover">
+          <div class="edu-degree-label">— Bachelor's Degree</div>
+          <img
+            class="edu-logo"
+            src="assets/images/logo-zuel.png"
+            alt="ZUEL Logo"
+          />
+          <div class="divider"></div>
+          <div class="edu-cover-name-en">
+            Zhongnan University of<br />Economics and Law
+          </div>
+          <div class="edu-cover-name-cn">中 南 财 经 政 法 大 学</div>
+        </div>
+
+        <div class="edu-body">
+          <div class="edu-header">
+            <div>
+              <div class="edu-school">中南财经政法大学</div>
+              <div class="edu-degree">本科 · 财务管理</div>
+            </div>
+            <div class="edu-date">2019.09 — 2023.06</div>
+          </div>
+
+          <ul class="edu-list">
+            <li><strong>学生工作:</strong>担任班级班长,统筹班级日常事务与活动组织</li>
+            <li><strong>荣誉奖项:</strong>优秀学生干部 · 国家励志奖学金</li>
+            <li><strong>专业方向:</strong>财务分析 · 管理会计 · 商业建模</li>
+            <li><strong>核心课程:</strong>高级财务管理 · 中级财务会计 · 审计学 · 公司金融 · 数据分析基础</li>
+            <li><strong>实践经历:</strong>校园学生组织活动策划</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Li Ying · Crafted with care · Hosted on GitHub Pages
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add("visible");
+          observer.unobserve(e.target);
+        }
+      }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
